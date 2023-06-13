@@ -1,11 +1,13 @@
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   Box,
   Button,
   Hidden,
   IconButton,
   Link as MuiLink,
+  TextField,
 } from "@mui/material";
 import Logo from "components/common/Logo";
 import MobileNavbarDrawer from "components/common/MobileNavbarDrawer";
@@ -39,58 +41,67 @@ export const Header = () => {
       component="header"
       sx={{
         height: 60,
-        px: 2,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        borderBottom: "1px solid",
-        borderColor: "divider",
-        position: "sticky",
-        top: 0,
-        left: 0,
-        zIndex: "appBar",
-        bgcolor: "background.default",
       }}
     >
       <Logo />
-      <Box display="flex" alignItems="center">
-        {isAuth ? (
-          <Box display="flex" alignItems="center" gap={1} ml={1}>
-            <MuiLink href="/profile" component={Link} display="flex">
-              <Image
-                style={{ borderRadius: "50%" }}
-                src={profile?.image}
-                width={30}
-                height={30}
-                alt=""
-              />
-            </MuiLink>
-            <Button onClick={() => handleSignOut()} variant="text">
-              {t("signOut")}
+      <Box
+        px={2}
+        height="100%"
+        flex={1}
+        bgcolor="#fff"
+        display="flex"
+        alignItems="center"
+      >
+        <TextField
+          placeholder="Search by email, mobile number or transaction id"
+          size="small"
+          InputProps={{
+            startAdornment: <SearchIcon sx={{ color: "#a5a4bf" }} />,
+          }}
+          fullWidth
+        />
+        <Box display="flex" alignItems="center">
+          {isAuth ? (
+            <Box display="flex" alignItems="center" gap={1} ml={1}>
+              <MuiLink href="/profile" component={Link} display="flex">
+                <Image
+                  style={{ borderRadius: "50%" }}
+                  src={profile?.image}
+                  width={30}
+                  height={30}
+                  alt=""
+                />
+              </MuiLink>
+              <Button onClick={() => handleSignOut()} variant="text">
+                {t("signOut")}
+              </Button>
+            </Box>
+          ) : (
+            <Button variant="text" component={Link} href="/auth/sign-in">
+              {t("signIn")}
             </Button>
-          </Box>
-        ) : (
-          <Button variant="text" component={Link} href="/auth/sign-in">
-            {t("signIn")}
-          </Button>
-        )}
+          )}
 
-        <Hidden smUp>
-          <IconButton
-            onClick={() => setIsMobileNavbarDrawerOpen((prev) => !prev)}
-          >
-            {!isMobileNavbarDrawerOpen ? (
-              <MenuIcon fontSize="large" />
-            ) : (
-              <CloseIcon fontSize="large" />
-            )}
-          </IconButton>
-        </Hidden>
+          <Hidden smUp>
+            <IconButton
+              onClick={() => setIsMobileNavbarDrawerOpen((prev) => !prev)}
+            >
+              {!isMobileNavbarDrawerOpen ? (
+                <MenuIcon fontSize="large" />
+              ) : (
+                <CloseIcon fontSize="large" />
+              )}
+            </IconButton>
+          </Hidden>
+        </Box>
+        <MobileNavbarDrawer
+          isDrawer={isMobileNavbarDrawerOpen}
+          setIsDrawer={setIsMobileNavbarDrawerOpen}
+        />
       </Box>
-      <MobileNavbarDrawer
-        isDrawer={isMobileNavbarDrawerOpen}
-        setIsDrawer={setIsMobileNavbarDrawerOpen}
-      />
     </Box>
   );
 };
