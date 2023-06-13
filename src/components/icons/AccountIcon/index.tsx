@@ -4,7 +4,12 @@ interface IAccountIconProps {}
 
 const AccountIcon: FunctionComponent<IAccountIconProps> = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 16">
+    <svg
+      width="18px"
+      height="16px"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 23 16"
+    >
       <defs></defs>
       <g
         id="Group_1128"

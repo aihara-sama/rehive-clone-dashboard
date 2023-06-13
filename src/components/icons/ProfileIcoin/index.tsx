@@ -6,12 +6,12 @@ const ProfileIcon: FunctionComponent<IrRofilePropsIcon> = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="800px"
-      height="800px"
+      width="14px"
+      height="14px"
       viewBox="0 0 24 24"
       fill="none"
     >
-      <rect width="24" height="24" fill="white" />
+      <rect width="24" height="24" />
       <path
         fillRule="evenodd"
         clipRule="evenodd"

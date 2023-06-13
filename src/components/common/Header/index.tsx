@@ -1,3 +1,4 @@
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -6,38 +7,39 @@ import {
   Button,
   Hidden,
   IconButton,
-  Link as MuiLink,
   TextField,
+  Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import Logo from "components/common/Logo";
-import MobileNavbarDrawer from "components/common/MobileNavbarDrawer";
+import ExportIcon from "components/icons/ExportIcon";
+import UserIcon from "components/icons/UserIcon";
+import VialIcon from "components/icons/VialIcon";
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { toast } from "react-hot-toast";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import type { ApplicationState } from "store";
+import { Sidebar } from "../Sidebar";
+import UserPopper from "./UserPopper";
 
 export const Header = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const { t } = useTranslation("common");
   const { isAuth, profile } = useSelector(
     (state: ApplicationState) => state.user
   );
 
-  const [isMobileNavbarDrawerOpen, setIsMobileNavbarDrawerOpen] =
-    useState<boolean>(false);
-
-  const handleSignOut = async () => {
-    try {
-      //
-    } catch (error) {
-      toast.error("Something went wrong");
-    }
-  };
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+  useEffect(() => {
+    setIsSidebarOpen(isMdUp);
+  }, [isMdUp]);
 
   return (
     <Box
+      bgcolor="#fff"
       component="header"
       sx={{
         height: 60,
@@ -46,61 +48,103 @@ export const Header = () => {
         justifyContent: "space-between",
       }}
     >
-      <Logo />
+      <Hidden mdDown>
+        <Logo />
+      </Hidden>
+      <Hidden mdUp>
+        <IconButton>
+          {isSidebarOpen ? (
+            <CloseIcon
+              onClick={() => setIsSidebarOpen(false)}
+              fontSize="large"
+            />
+          ) : (
+            <MenuIcon onClick={() => setIsSidebarOpen(true)} fontSize="large" />
+          )}
+        </IconButton>
+      </Hidden>
       <Box
+        ml={{ xs: "5%", md: "0" }}
         px={2}
         height="100%"
         flex={1}
-        bgcolor="#fff"
         display="flex"
         alignItems="center"
       >
         <TextField
+          sx={{
+            mr: { xs: "auto", md: 3 },
+            width: { xs: "65%", md: "50%" },
+            fieldset: {
+              border: "1px solid #e7e7e7 !important",
+            },
+            input: {
+              fontSize: 14,
+            },
+          }}
           placeholder="Search by email, mobile number or transaction id"
           size="small"
           InputProps={{
             startAdornment: <SearchIcon sx={{ color: "#a5a4bf" }} />,
           }}
-          fullWidth
         />
-        <Box display="flex" alignItems="center">
+        <ExportIcon />
+        <Hidden mdDown>
+          <Box ml={5} mr={5} display="flex" alignItems="center" gap={1}>
+            <VialIcon />
+            <Typography
+              whiteSpace="nowrap"
+              color="#7d83f4"
+              fontSize={14}
+              fontWeight={500}
+            >
+              Test project
+            </Typography>
+          </Box>
+        </Hidden>
+        <Box ml={{ xs: "0", md: "auto" }} display="flex" alignItems="center">
           {isAuth ? (
-            <Box display="flex" alignItems="center" gap={1} ml={1}>
-              <MuiLink href="/profile" component={Link} display="flex">
-                <Image
-                  style={{ borderRadius: "50%" }}
-                  src={profile?.image}
-                  width={30}
-                  height={30}
-                  alt=""
-                />
-              </MuiLink>
-              <Button onClick={() => handleSignOut()} variant="text">
-                {t("signOut")}
-              </Button>
-            </Box>
+            <UserPopper
+              el={
+                <Box display="flex" alignItems="center" gap={1} ml={1}>
+                  <Hidden mdDown>
+                    <Box display="flex" flexDirection="column" alignItems="end">
+                      <Typography color="#707070" fontSize={14}>
+                        {profile.email}
+                      </Typography>
+                      <Typography color="#707070" fontSize={14}>
+                        my_app_test
+                      </Typography>
+                    </Box>
+                  </Hidden>
+                  <Box
+                    p={0.5}
+                    display="flex"
+                    gap={1}
+                    sx={{
+                      cursor: "pointer",
+                      borderRadius: "80px",
+                      backgroundColor: "#f7f7f7",
+                    }}
+                    alignItems="center"
+                  >
+                    <UserIcon />
+                    <ArrowDropDownIcon />
+                  </Box>
+                </Box>
+              }
+            />
           ) : (
             <Button variant="text" component={Link} href="/auth/sign-in">
               {t("signIn")}
             </Button>
           )}
 
-          <Hidden smUp>
-            <IconButton
-              onClick={() => setIsMobileNavbarDrawerOpen((prev) => !prev)}
-            >
-              {!isMobileNavbarDrawerOpen ? (
-                <MenuIcon fontSize="large" />
-              ) : (
-                <CloseIcon fontSize="large" />
-              )}
-            </IconButton>
-          </Hidden>
+          <Sidebar
+            open={isSidebarOpen}
+            onClose={() => setIsSidebarOpen(false)}
+          />
         </Box>
-        <MobileNavbarDrawer
-          isDrawer={isMobileNavbarDrawerOpen}
-          setIsDrawer={setIsMobileNavbarDrawerOpen}
-        />
       </Box>
     </Box>
   );

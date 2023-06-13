@@ -2,14 +2,14 @@ import type { FunctionComponent } from "react";
 
 interface IHuoseIconProps {}
 
-const HusoeIcon: FunctionComponent<IHuoseIconProps> = () => {
+const HouseIcon: FunctionComponent<IHuoseIconProps> = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
       id="_x32_"
-      width="800px"
-      height="800px"
+      width="18px"
+      height="16px"
       fill="#a5a4bf"
       viewBox="0 0 512 512"
       xmlSpace="preserve"
@@ -28,4 +28,4 @@ const HusoeIcon: FunctionComponent<IHuoseIconProps> = () => {
   );
 };
 
-export default HusoeIcon;
+export default HouseIcon;

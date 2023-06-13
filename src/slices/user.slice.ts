@@ -14,8 +14,13 @@ export interface AppState {
 }
 
 const initialState: AppState = {
-  profile: null,
-  isAuth: false,
+  profile: {
+    email: "jonh@mail.ru",
+    id: "2d32kd9039",
+    image: "",
+    name: "john",
+  },
+  isAuth: true,
 };
 
 export const userSlice = createSlice({

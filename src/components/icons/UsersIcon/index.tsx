@@ -4,7 +4,12 @@ interface IUsersIconProps {}
 
 const UsersIcon: FunctionComponent<IUsersIconProps> = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 16">
+    <svg
+      width="18px"
+      height="16px"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 14 16"
+    >
       <defs></defs>
       <path
         id="Union_10"

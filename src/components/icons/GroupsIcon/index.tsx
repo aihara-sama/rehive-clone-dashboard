@@ -4,7 +4,12 @@ interface IGroupsIconProps {}
 
 const GroupsIcon: FunctionComponent<IGroupsIconProps> = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 20">
+    <svg
+      width="18px"
+      height="16px"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 33 20"
+    >
       <defs></defs>
       <g
         id="Group_1126"

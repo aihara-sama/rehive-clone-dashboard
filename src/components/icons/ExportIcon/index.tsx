@@ -7,8 +7,8 @@ const ExportIcon: FunctionComponent<IExportIconProps> = () => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="#a5a4bf"
-      height="800px"
-      width="800px"
+      height="24px"
+      width="24px"
       version="1.1"
       id="Layer_1"
       viewBox="0 0 367 367"

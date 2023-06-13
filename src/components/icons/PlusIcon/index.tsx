@@ -4,7 +4,12 @@ interface IPlusIconProps {}
 
 const PlusIcon: FunctionComponent<IPlusIconProps> = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 15.999">
+    <svg
+      width="18px"
+      height="16px"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 15.999"
+    >
       <defs></defs>
       <g id="_" data-name="+" transform="translate(-301 -111)">
         <path
