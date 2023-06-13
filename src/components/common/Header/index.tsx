@@ -7,11 +7,8 @@ import {
   IconButton,
   Link as MuiLink,
 } from "@mui/material";
-import { LanguageToggle } from "components/common/LanguageToggle";
 import Logo from "components/common/Logo";
 import MobileNavbarDrawer from "components/common/MobileNavbarDrawer";
-import { ThemeToggle } from "components/common/ThemeToggle";
-import { getAuth, signOut } from "firebase/auth";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,7 +28,7 @@ export const Header = () => {
 
   const handleSignOut = async () => {
     try {
-      await signOut(getAuth());
+      //
     } catch (error) {
       toast.error("Something went wrong");
     }
@@ -57,8 +54,6 @@ export const Header = () => {
     >
       <Logo />
       <Box display="flex" alignItems="center">
-        <LanguageToggle />
-        <ThemeToggle />
         {isAuth ? (
           <Box display="flex" alignItems="center" gap={1} ml={1}>
             <MuiLink href="/profile" component={Link} display="flex">

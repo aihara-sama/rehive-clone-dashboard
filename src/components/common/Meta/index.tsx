@@ -13,7 +13,7 @@ interface Detail {
 const data: Detail[] = [
   {
     url: "/",
-    title: "Example",
+    title: "Rehive Dashboard Clone",
     description: "Next.js + MUI + Typescript boilerplate",
     keywords: "nextjs, material-ui, typescript, boilerplate",
   },
@@ -45,7 +45,7 @@ export const Meta = () => {
           description: details.description,
           url: details.canonical,
           locale: "en",
-          site_name: "example",
+          site_name: "Rehive Dashboard Clone",
         }}
       />
     </Head>
