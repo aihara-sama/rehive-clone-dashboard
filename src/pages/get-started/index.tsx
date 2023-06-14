@@ -996,7 +996,12 @@ const GetStartedPage = () => {
                 </Box>
               </Box>
             </Hidden>
-            <Typography mt={3} color="#4c4a51" fontSize={22} fontWeight={700}>
+            <Typography
+              mt={{ xs: 3, xl: 0 }}
+              color="#4c4a51"
+              fontSize={22}
+              fontWeight={700}
+            >
               Go to Production
             </Typography>
             <Box
