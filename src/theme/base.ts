@@ -103,6 +103,7 @@ const components: ThemeOptions["components"] = {
       disableTouchRipple: true,
       sx: {
         lineHeight: 1.7,
+        transition: "none",
       },
     },
   },

@@ -32,10 +32,10 @@ export const Header = () => {
   );
 
   const theme = useTheme();
-  const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+  const isLgUp = useMediaQuery(theme.breakpoints.up("lg"));
   useEffect(() => {
-    setIsSidebarOpen(isMdUp);
-  }, [isMdUp]);
+    setIsSidebarOpen(isLgUp);
+  }, [isLgUp]);
 
   return (
     <Box
@@ -46,12 +46,16 @@ export const Header = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        position: "fixed",
+        right: 0,
+        left: 0,
+        top: 0,
       }}
     >
-      <Hidden mdDown>
+      <Hidden lgDown>
         <Logo />
       </Hidden>
-      <Hidden mdUp>
+      <Hidden lgUp>
         <IconButton>
           {isSidebarOpen ? (
             <CloseIcon
